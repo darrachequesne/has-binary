@@ -34,6 +34,11 @@ describe('has-binarydata', function () {
     assert(hasBinary(ob));
   });
 
+  it('should work with an object by calling toJSON() once', function () {
+    var ob = { toJSON: function () { return this; } };
+    assert(!hasBinary(ob));
+  });
+
   it('should work with null', function () {
     assert(!hasBinary(null));
   });

@@ -44,8 +44,8 @@ function hasBinary (obj) {
   }
 
   // see: https://github.com/Automattic/has-binary/pull/4
-  if (obj.toJSON && typeof obj.toJSON === 'function') {
-    return hasBinary(obj.toJSON());
+  if (obj.toJSON && typeof obj.toJSON === 'function' && arguments.length === 1) {
+    return hasBinary(obj.toJSON(), true);
   }
 
   for (var key in obj) {
