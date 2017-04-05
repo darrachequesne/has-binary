@@ -1,5 +1,10 @@
 
-1.0.0 / 2017-05-05
+1.0.1 / 2017-04-05
+==================
+
+  * chore(*): restrict files included in npm package
+
+1.0.0 / 2017-04-05
 ==================
 
   * chore(*): update package name
