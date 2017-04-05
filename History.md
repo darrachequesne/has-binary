@@ -1,4 +1,14 @@
 
+1.0.0 / 2017-05-05
+==================
+
+  * chore(*): update package name
+  * fix(*): do not call toJSON more than once (#7)
+  * fix(*): Ensure globals are functions before running `instanceof` checks against them. (#4)
+  * fix(*): fix the case when toJSON() returns a Buffer  (#6)
+  * chore(*): Bump dependencies, add semistandard checkstyle and travis configuration (#5)
+  * perf(*): Performance improvements (#3)
+
 0.1.7 / 2015-11-18
 ==================
 
