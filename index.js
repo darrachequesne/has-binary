@@ -6,6 +6,10 @@
 
 var isArray = require('isarray');
 
+var toString = Object.prototype.toString;
+var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
+var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
+
 /**
  * Module exports.
  */
@@ -37,8 +41,8 @@ function hasBinary (obj) {
 
   if ((typeof global.Buffer === 'function' && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
      (typeof global.ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
-     (typeof global.Blob === 'function' && obj instanceof Blob) ||
-     (typeof global.File === 'function' && obj instanceof File)
+     (withNativeBlob && obj instanceof Blob) ||
+     (withNativeFile && obj instanceof File)
     ) {
     return true;
   }
