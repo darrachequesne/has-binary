@@ -4,8 +4,6 @@
  * Module requirements.
  */
 
-var isArray = require('isarray');
-
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -30,7 +28,7 @@ function hasBinary (obj) {
     return false;
   }
 
-  if (isArray(obj)) {
+  if (Array.isArray(obj)) {
     for (var i = 0, l = obj.length; i < l; i++) {
       if (hasBinary(obj[i])) {
         return true;
