@@ -84,4 +84,29 @@ describe('has-binarydata', function () {
       assert(!hasBinary(global.Blob));
     });
   }
+
+  it('should work with recursive structures and no blobs', function () {
+    var child = {
+      foo: 'bar'
+    };
+    var parent = {
+      zoo: 'gar',
+      child: child
+    };
+    child.parent = parent;
+    assert(!hasBinary(child));
+  });
+
+  it('should work with recursive structures and blobs', function () {
+    var child = {
+      foo: 'bar'
+    };
+    var parent = {
+      zoo: 'gar',
+      child: child,
+      blob: new Buffer('xxx')
+    };
+    child.parent = parent;
+    assert(hasBinary(child));
+  });
 });
