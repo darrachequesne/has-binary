@@ -18,5 +18,9 @@
     "index.js"
   ],
   "author": "Kevin Roark",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darrachequesne/has-binary.git"
+  }
 }
