@@ -15,7 +15,7 @@ describe('has-binarydata', () => {
   });
 
   it('should work with an array that contains a buffer', () => {
-    var arr = [1, new Buffer('asdfasdf', 'utf8'), 2];
+    var arr = [1, Buffer.from('asdfasdf', 'utf8'), 2];
     assert(hasBinary(arr));
   });
 
@@ -25,12 +25,12 @@ describe('has-binarydata', () => {
   });
 
   it('should work with an object that contains a buffer', () => {
-    var ob = {a: 'a', b: new Buffer('abc'), c: 1234, toJSON: '{"a": "a"}'};
+    var ob = {a: 'a', b: Buffer.from('abc'), c: 1234, toJSON: '{"a": "a"}'};
     assert(hasBinary(ob));
   });
 
   it('should work with an object whose toJSON() returns a buffer', () => {
-    var ob = {a: 'a', b: [], c: 1234, toJSON: () => { return new Buffer('abc'); }};
+    var ob = {a: 'a', b: [], c: 1234, toJSON: () => { return Buffer.from('abc'); }};
     assert(hasBinary(ob));
   });
 
@@ -63,7 +63,7 @@ describe('has-binarydata', () => {
       y: undefined,
       z: {a: 'x', b: 'y', c: 3, d: null},
       w: [],
-      bin: new Buffer('xxx')
+      bin: Buffer.from('xxx')
     };
     assert(hasBinary(ob));
   });
