@@ -70,7 +70,10 @@ describe('has-binarydata', () => {
 
   if (global.ArrayBuffer) {
     it('should work with an ArrayBuffer', () => {
-      assert(hasBinary(new ArrayBuffer()));
+      assert(hasBinary(Int8Array.from([1, 2, 3]).buffer));
+    });
+    it('should work with a typed array', () => {
+      assert(hasBinary(Int8Array.from([1, 2, 3])));
     });
   }
 

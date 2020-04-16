@@ -5,6 +5,12 @@ const withNativeBlob = typeof Blob === 'function' ||
                         typeof Blob !== 'undefined' && toString.call(Blob) === '[object BlobConstructor]';
 const withNativeFile = typeof File === 'function' ||
                         typeof File !== 'undefined' && toString.call(File) === '[object FileConstructor]';
+const withNativeArrayBuffer = typeof ArrayBuffer === 'function';
+
+// ArrayBuffer.isView method is not defined in IE10
+const isView = (obj) => {
+  return typeof ArrayBuffer.isView === 'function' ? ArrayBuffer.isView(obj) : (obj.buffer instanceof ArrayBuffer);
+};
 
 /**
  * Module exports.
@@ -35,8 +41,7 @@ function hasBinary (obj) {
     return false;
   }
 
-  if ((typeof Buffer === 'function' && Buffer.isBuffer && Buffer.isBuffer(obj)) ||
-    (typeof ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
+  if (withNativeArrayBuffer && (obj instanceof ArrayBuffer || isView(obj)) ||
     (withNativeBlob && obj instanceof Blob) ||
     (withNativeFile && obj instanceof File)
   ) {
