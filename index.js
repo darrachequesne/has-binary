@@ -1,11 +1,5 @@
 /* global Blob File */
 
-/*
- * Module requirements.
- */
-
-const isArray = require('isarray');
-
 const toString = Object.prototype.toString;
 const withNativeBlob = typeof Blob === 'function' ||
                         typeof Blob !== 'undefined' && toString.call(Blob) === '[object BlobConstructor]';
@@ -32,7 +26,7 @@ function hasBinary (obj) {
     return false;
   }
 
-  if (isArray(obj)) {
+  if (Array.isArray(obj)) {
     for (let i = 0, l = obj.length; i < l; i++) {
       if (hasBinary(obj[i])) {
         return true;
