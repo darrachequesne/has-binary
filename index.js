@@ -4,12 +4,12 @@
  * Module requirements.
  */
 
-var isArray = require('isarray');
+const isArray = require('isarray');
 
-var toString = Object.prototype.toString;
-var withNativeBlob = typeof Blob === 'function' ||
+const toString = Object.prototype.toString;
+const withNativeBlob = typeof Blob === 'function' ||
                         typeof Blob !== 'undefined' && toString.call(Blob) === '[object BlobConstructor]';
-var withNativeFile = typeof File === 'function' ||
+const withNativeFile = typeof File === 'function' ||
                         typeof File !== 'undefined' && toString.call(File) === '[object FileConstructor]';
 
 /**
@@ -33,7 +33,7 @@ function hasBinary (obj) {
   }
 
   if (isArray(obj)) {
-    for (var i = 0, l = obj.length; i < l; i++) {
+    for (let i = 0, l = obj.length; i < l; i++) {
       if (hasBinary(obj[i])) {
         return true;
       }
@@ -54,7 +54,7 @@ function hasBinary (obj) {
     return hasBinary(obj.toJSON(), true);
   }
 
-  for (var key in obj) {
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key) && hasBinary(obj[key])) {
       return true;
     }
